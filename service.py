@@ -69,8 +69,10 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
 def logins():
     content = request.get_json()
     username = content['username']
-    password = sha512(content['password']).hexdigest()
-    login = gdao.login(session['username'],password)
+    print (username)
+    password = content['password']
+    print (password)
+    login = gdao.login(username,password)
     return login
 
 

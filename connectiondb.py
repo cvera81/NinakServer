@@ -6,7 +6,7 @@ import pymysql
 DB_HOST = 'localhost' 
 DB_USER = 'root' 
 DB_PASS = '123456' 
-DB_NAME = 'ninal'
+DB_NAME = 'ninak'
  
 def run_query(query,data):
     
