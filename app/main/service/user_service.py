@@ -6,11 +6,9 @@ from app.main.model.user import User
 
 
 def save_new_user(data):
-    user = User.query.filter_by(email=data['email']).first()
+    user = User.query.filter_by(num_doc=data['num_doc']).first()
     if not user:
-        new_user = User(
-            email=data['email'],
-            password=data['password'],
+        new_user = User(        
 			first_name=data['first_name'],
 			middle_name=data['middle_name'],
 			last_name=data['last_name'],
@@ -35,9 +33,28 @@ def get_all_users():
     return User.query.all()
 
 
-def get_a_user(email):
-    return User.query.filter_by(email=email).first()
+def get_an_user(num_doc):
+    return User.query.filter_by(num_doc = num_doc).first()
 
+def delete_an_user(num_doc):
+    user = User.query.filter_by(num_doc = num_doc).first()
+    db.session.delete(user)
+    db.session.commit()    
+
+def update_an_user(num_doc):
+    user = User.query.filter_by(num_doc=num_doc).first()
+    user.first_name = 'Elrick'
+    user.last_name = 'Vera'
+    user.num_doc = '12345678'
+    db.session.commit()
+    return user
+
+    """
+    teacher = Teacher.query.filter_by(email=email).first()
+    teacher.email = 'huntercvd@gmail.com'
+    db.session.commit()
+    return teacher
+    """
 
 def generate_token(user):
     try:
