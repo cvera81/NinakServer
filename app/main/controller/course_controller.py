@@ -25,16 +25,20 @@ class CourseList(Resource):
         data = request.json
         return save_new_course(data=data)
 
+    
+    
 
-@api.route('/<course_name>')
-@api.param('course_name', 'The course identifier')
-@api.response(404, 'Account not found.')
+
+# cambiarlo por id 
+@api.route('/<id>')
+@api.param('id', 'The course identifier')
+@api.response(404, 'Course not found.')
 class Course(Resource):
     @api.doc('get an course')
     @api.marshal_with(_course)
-    def get(self, course_name):
+    def get(self, id):
         """get an course given its identifier"""
-        course = get_a_course(course_name)
+        course = get_a_course(id)
         if not course:
             api.abort(404)
         else:
@@ -42,15 +46,15 @@ class Course(Resource):
 
     @api.doc('delete a course')
     @api.marshal_with(_course)        
-    def delete(self,course_name):
+    def delete(self,id):
         """delete a course given its identifier"""
-        delete_a_course(course_name)
+        delete_a_course(id)
         
     @api.doc('update a course')
-    @api.marshal_with(_course)        
-    def put(self,course_name):
+    @api.marshal_with(_course)            
+    def put(self,id):
         """update a course given its identifier"""
-        course = update_a_course(course_name)
+        course = update_a_course(id)
         if not course:
             api.abort(404)
         else:

@@ -38,19 +38,34 @@ class AccountDto:
 
 class CourseDto:
     api = Namespace('course', description='course related operations')
-    course = api.model('course', {        
-        'id_student': fields.Integer(required=True, description='course id_student'),
-        'id_school_subsjects': fields.Integer(required=True, description='course id_school_subsjects'),
-        'course_name': fields.String(required=True, description='course course_name'),
-        'final_note': fields.String(required=True, description='course final_note'),
-        'description': fields.String(required=False, description='course description'),		
-		'registered_on': fields.DateTime(required=True, description='course registered_on')
+    course = api.model('course', {                        
+        'name': fields.String(required=True, description='course name'),        
+        'description': fields.String(required=False, description='course description'),				
     })   
 class TeacherDto:
     api = Namespace('teacher', description='teacher related operations')
     teacher = api.model('teacher', {        
-        'id_user': fields.Integer(required=True, description='teacher id_user'),        
-        'email': fields.String(required=True, description='teacher email'),                
+        'id_account': fields.Integer(required=True, description='teacher id_account'),        
+        'teacher_code': fields.String(required=True, description='teacher teacher_code'),                
 		'registered_on': fields.DateTime(required=True, description='teacher registered_on')
+    })   
+
+class StudentDto:
+    api = Namespace('student', description='student related operations')
+    student = api.model('student', {        
+        'id_account': fields.Integer(required=True, description='student id_account'),        
+        'student_code': fields.String(required=True, description='student student_code'),                
+		'registered_on': fields.DateTime(required=True, description='student registered_on')
+    })   
+
+class InstituteDto:
+    api = Namespace('institute', description='institute related operations')
+    institute = api.model('institute', {        
+        'name': fields.String(required=True, description='institute name'),        
+        'email': fields.String(required=True, description='institute email'),
+        'id_country': fields.Integer(required=True, description='institute id_country'),
+		'id_state': fields.Integer(required=True, description='institute id_state'),
+        'id_city': fields.Integer(required=True, description='institute id_city'),
+		'registered_on': fields.DateTime(required=True, description='institute registered_on')                		
     })   
 

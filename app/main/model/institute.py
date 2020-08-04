@@ -5,12 +5,15 @@ from app.main.model.blacklist import BlacklistToken
 from ..config import key
 import jwt
 
-class Teacher(db.Model):
-	""" Teacher Model for storing teacher related details """
-	__tablename__ = "teacher"
+class Institute(db.Model):
+	""" Institute Model for storing teacher related details """
+	__tablename__ = "Institute"
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	id_account = db.Column(db.Integer, nullable=False)	
-	teacher_code = db.Column(db.String(30),  nullable=False)
+	name = db.Column(db.String(100), nullable=False)	
+	email = db.Column(db.String(30), nullable=False)	
+	id_country = db.Column(db.Integer,  nullable=False)
+	id_state = db.Column(db.Integer,  nullable=False)
+	id_city = db.Column(db.Integer,  nullable=False)
 	registered_on = db.Column(db.DateTime, nullable=False)
 
 
@@ -54,4 +57,4 @@ class Teacher(db.Model):
 			return 'Invalid token. Please log in again.'
 	
 	def __repr__(self):
-		return "<Teacher '{}'>".format(self.id)
+		return "<Institute '{}'>".format(self.id)

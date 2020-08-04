@@ -6,15 +6,11 @@ from app.main.model.course import Course
 
 
 def save_new_course(data):
-    course = Course.query.filter_by(course_name=data['course_name']).first()
+    course = Course.query.filter_by(id=data['id']).first()
     if not course:
-        new_course = Course(            
-            id_student=data['id_student'],
-            id_school_subsjects=data['id_school_subsjects'],
-            course_name=data['course_name'],
-            final_note=data['final_note'],											            
-			description=data['description'],			
-            registered_on=datetime.datetime.utcnow()
+        new_course = Course(                                    
+            name=data['name'],            
+			description=data['description'],			            
         )        
         save_changes(new_course)
         return generate_token(new_course)
@@ -30,17 +26,17 @@ def get_all_courses():
     return Course.query.all()
 
 
-def get_a_course(course_name):
-    return Course.query.filter_by(course_name = course_name).first()
+def get_a_course(id):
+    return Course.query.filter_by(id = id).first()
 
-def delete_a_course(course_name):
-    course = Course.query.filter_by(course_name = course_name).first()
+def delete_a_course(id):
+    course = Course.query.filter_by(id = id).first()
     db.session.delete(course)
     db.session.commit()    
 
-def update_a_course(course_name):
-    course = Course.query.filter_by(course_name = course_name).first()
-    course.final_note = 16.50
+def update_a_course(id):
+    course = Course.query.filter_by(id = id).first()
+    course.name = 'new course'
     course.description = 'curso recomendado'
     db.session.commit()
     return course

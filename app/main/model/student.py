@@ -5,12 +5,12 @@ from app.main.model.blacklist import BlacklistToken
 from ..config import key
 import jwt
 
-class Teacher(db.Model):
-	""" Teacher Model for storing teacher related details """
-	__tablename__ = "teacher"
+class Student(db.Model):
+	""" Student Model for storing teacher related details """
+	__tablename__ = "student"
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	id_account = db.Column(db.Integer, nullable=False)	
-	teacher_code = db.Column(db.String(30),  nullable=False)
+	student_code = db.Column(db.String(30),  nullable=False)
 	registered_on = db.Column(db.DateTime, nullable=False)
 
 

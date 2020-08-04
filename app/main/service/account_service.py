@@ -12,7 +12,7 @@ def save_new_account(data):
             id_user=data['id_user'],
             id_institute=data['id_institute'],
             email=data['email'],
-            password=data['password'],											            
+            password_hash=data['password_hash'],											            
 			old_password=data['old_password'],
 			wrong_login_attempt=data['wrong_login_attempt'],
 			today_login_attempt=data['today_login_attempt'],

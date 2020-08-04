@@ -8,13 +8,9 @@ import jwt
 class Course(db.Model):
 	""" Course Model for storing course related details """
 	__tablename__ = "course"
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	id_student = db.Column(db.Integer, nullable=False)
-	id_school_subsjects = db.Column(db.Integer, nullable=False)	
-	course_name = db.Column(db.String(30), default='', nullable=False)	
-	final_note =db.Column(db.DECIMAL(4,2), default=0.00 ,nullable=False)
-	description = db.Column(db.String(200), default='', nullable=False)	
-	registered_on = db.Column(db.DateTime, nullable=False)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)	
+	name = db.Column(db.String(100), default='', nullable=False)		
+	description = db.Column(db.String(500), default='', nullable=False)		
 
 	"""	
 	@property
@@ -68,4 +64,4 @@ class Course(db.Model):
 			return 'Invalid token. Please log in again.'
 	
 	def __repr__(self):
-		return "<Course '{}'>".format(self.course_name)
+		return "<Course '{}'>".format(self.id)

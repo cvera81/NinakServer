@@ -2,49 +2,49 @@ import uuid
 import datetime
 
 from app.main import db
-from app.main.model.teacher import Teacher
+from app.main.model.student import Student
 
 
-def save_new_teacher(data):
-    teacher = Teacher.query.filter_by(id=data['id']).first()
-    if not teacher:
-        new_teacher = Teacher(            
+def save_new_student(data):
+    student = Student.query.filter_by(id=data['id']).first()
+    if not student:
+        new_student = Student(            
             id_account=data['id_account'],     
-            teacher_code=data['teacher_code'],   
+            student_code=data['student_code'],   
             registered_on=datetime.datetime.utcnow()
         )        
-        save_changes(new_teacher)
-        return generate_token(new_teacher)
+        save_changes(new_student)
+        return generate_token(new_student)
     else:
         response_object = {
             'status': 'fail',
-            'message': 'Teacher already exists. Please Log in.',
+            'message': 'Student already exists. Please Log in.',
         }
         return response_object, 409
         
-def get_all_teachers():
-    return Teacher.query.all()
+def get_all_students():
+    return Student.query.all()
 
 
-def get_a_teacher(id):
-    return Teacher.query.filter_by(id=id).first()
+def get_a_student(id):
+    return Student.query.filter_by(id=id).first()
 
-def delete_a_teacher(id):
-    teacher = Teacher.query.filter_by(id=id).first()
-    db.session.delete(teacher)
+def delete_a_student(id):
+    student = Student.query.filter_by(id=id).first()
+    db.session.delete(student)
     db.session.commit()    
 
-def update_a_teacher(id):
-    teacher = Teacher.query.filter_by(id=id).first()
-    teacher.teacher_code = '123123213132'
+def update_a_student(id):
+    student = Student.query.filter_by(id=id).first()
+    student.student_code = '123123213132'
     db.session.commit()
-    return teacher
+    return student
 
 
 def generate_token(teacher):
     try:
         # generate the auth token
-        auth_token = Teacher.encode_auth_token(teacher.id)
+        auth_token = Student.encode_auth_token(teacher.id)
         response_object = {
             'status': 'success',
             'message': 'Successfully registered.',

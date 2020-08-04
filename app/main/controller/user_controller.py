@@ -50,7 +50,7 @@ class User(Resource):
     @api.doc('update a user')
     @api.marshal_with(_user)        
     def put(self,num_doc):
-        """update a teacher given its identifier"""
+        """update a user given its identifier"""
         user = update_an_user(num_doc)
         if not user:
             api.abort(404)

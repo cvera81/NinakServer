@@ -5,7 +5,11 @@ from .main.controller.user_controller import api as user_ns
 from .main.controller.account_controller import api as account_ns
 from .main.controller.course_controller import api as course_ns
 from .main.controller.teacher_controller import api as teacher_ns
+from .main.controller.student_controller import api as student_ns
+from .main.controller.institute_controller import api as institute_ns
+
 from .main.controller.auth_controller import api as auth_ns
+
 
 blueprint = Blueprint('api', __name__)
 
@@ -20,6 +24,8 @@ api.add_namespace(auth_ns)
 api.add_namespace(account_ns, path='/account')
 api.add_namespace(course_ns, path='/course')
 api.add_namespace(teacher_ns, path='/teacher')
+api.add_namespace(student_ns, path='/student')
+api.add_namespace(institute_ns, path='/institute')
 """
 [ok] user acomodarlo
 [ok] profesor

@@ -26,15 +26,15 @@ class TeacherList(Resource):
         return save_new_teacher(data=data)        
     
 
-@api.route('/<email>')
-@api.param('email', 'The teacher identifier')
+@api.route('/<id>')
+@api.param('id', 'The teacher identifier')
 @api.response(404, 'Teacher not found.')
 class Teacher(Resource):
     @api.doc('get an teacher')
     @api.marshal_with(_teacher)
-    def get(self, email):
+    def get(self, id):
         """get a teacher given its identifier"""
-        teacher = get_a_teacher(email)
+        teacher = get_a_teacher(id)
         if not teacher:
             api.abort(404)
         else:
@@ -43,15 +43,15 @@ class Teacher(Resource):
     # para documentar.        
     @api.doc('delete a teacher')
     @api.marshal_with(_teacher)        
-    def delete(self,email):
+    def delete(self,id):
         """delete a teacher given its identifier"""
-        delete_a_teacher(email)
+        delete_a_teacher(id)
         
     @api.doc('update a teacher')
     @api.marshal_with(_teacher)        
-    def put(self,email):
+    def put(self,id):
         """update a teacher given its identifier"""
-        teacher = update_a_teacher(email)
+        teacher = update_a_teacher(id)
         if not teacher:
             api.abort(404)
         else:
