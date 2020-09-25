@@ -8,9 +8,7 @@ import jwt
 class User(db.Model):
 	""" User Model for storing user related details """
 	__tablename__ = "user"
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	#email = db.Column(db.String(255), unique=True, nullable=False)
-	#password_hash = db.Column(db.String(100))
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)	
 	first_name = db.Column(db.String(30), default='', nullable=False)
 	middle_name = db.Column(db.String(30), default='', nullable=False)
 	last_name = db.Column(db.String(30), default='', nullable=False)
@@ -20,6 +18,9 @@ class User(db.Model):
 	id_state = db.Column(db.Integer, nullable=False)
 	id_city = db.Column(db.Integer, nullable=False)
 	registered_on = db.Column(db.DateTime, nullable=False)
+	sex = db.Column(db.String(1),nullable=False) 
+	phone =db.Column(db.String(10),nullable=True)
+	date_birth = db.Column(db.DateTime,nullable=False)
 	
 	@property
 	def password(self):

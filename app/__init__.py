@@ -3,12 +3,15 @@ from flask import Blueprint
 
 from .main.controller.user_controller import api as user_ns
 from .main.controller.account_controller import api as account_ns
-from .main.controller.course_controller import api as course_ns
-from .main.controller.teacher_controller import api as teacher_ns
-from .main.controller.student_controller import api as student_ns
-from .main.controller.institute_controller import api as institute_ns
-
 from .main.controller.auth_controller import api as auth_ns
+from .main.controller.institute_controller import api as institute_ns
+from .main.controller.type_doc_controller import api as type_doc_ns
+from .main.controller.type_acc_controller import api as type_acc_ns
+from .main.controller.level_controller import api as level_ns
+from .main.controller.achievement_controller import api as achivement_ns
+from .main.controller.area_controller import api as area_ns
+from .main.controller.subject_controller import api as subject_ns
+from .main.controller.achievement_trans_controller import api as achievement_trans_ns
 
 
 blueprint = Blueprint('api', __name__)
@@ -22,25 +25,11 @@ api = Api(blueprint,
 api.add_namespace(user_ns, path='/user')
 api.add_namespace(auth_ns)
 api.add_namespace(account_ns, path='/account')
-api.add_namespace(course_ns, path='/course')
-api.add_namespace(teacher_ns, path='/teacher')
-api.add_namespace(student_ns, path='/student')
 api.add_namespace(institute_ns, path='/institute')
-"""
-[ok] user acomodarlo
-[ok] profesor
-[ok] cursos
-
-Nos ubicamos en main, luego ejecutamos este comando
-rm ninak_dev.db
-Luego vamos a la raiz principal y ubicamos la carpeta migrations, luego ejecutamos
-rm -Rf migrations
-ejecutamos la app
-python manage.py db init
-python manage.py db migrate --message "test"
-python manage.py db upgrade
-make run
-y que se haga la magia!!!!
-
-
-"""
+api.add_namespace(type_doc_ns, path='/type_doc')
+api.add_namespace(type_acc_ns, path='/type_acc')
+api.add_namespace(level_ns, path='/level')
+api.add_namespace(achivement_ns, path='/achivement')
+api.add_namespace(area_ns, path='/area')
+api.add_namespace(subject_ns, path='/subject')
+api.add_namespace(achievement_trans_ns, path='/achievement_trans')

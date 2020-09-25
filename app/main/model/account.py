@@ -70,4 +70,4 @@ class Account(db.Model):
 			return 'Invalid token. Please log in again.'
 	
 	def __repr__(self):
-		return "<User '{}'>".format(self.email)
+		return "<Account '{}'>".format(self.email)

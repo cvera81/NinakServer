@@ -12,7 +12,10 @@ class UserDto:
         'id_country': fields.Integer(required=True, description='user id_country'),
 		'id_state': fields.Integer(required=True, description='user id_state'),
         'id_city': fields.Integer(required=True, description='user id_city'),
-		'registered_on': fields.DateTime(required=True, description='user registered_on')
+		'registered_on': fields.DateTime(required=True, description='user registered_on'),
+        'sex': fields.String(required=True, description = 'user sex'),
+        'phone': fields.String(required=False, description = 'user phone'),
+        'date_birth': fields.DateTime(required=True, description='user date_birth')
     })
 
 
@@ -20,7 +23,7 @@ class AuthDto:
     api = Namespace('auth', description='authentication related operations')
     user_auth = api.model('auth_details', {
         'email': fields.String(required=True, description='The email address'),
-        'password': fields.String(required=True, description='The user password '),
+        'password': fields.String(required=True, description='The user password ')
     })
 class AccountDto:
     api = Namespace('account', description='account related operations')
@@ -36,36 +39,64 @@ class AccountDto:
 		'registered_on': fields.DateTime(required=True, description='account registered_on')
     })   
 
-class CourseDto:
-    api = Namespace('course', description='course related operations')
-    course = api.model('course', {                        
-        'name': fields.String(required=True, description='course name'),        
-        'description': fields.String(required=False, description='course description'),				
-    })   
-class TeacherDto:
-    api = Namespace('teacher', description='teacher related operations')
-    teacher = api.model('teacher', {        
-        'id_account': fields.Integer(required=True, description='teacher id_account'),        
-        'teacher_code': fields.String(required=True, description='teacher teacher_code'),                
-		'registered_on': fields.DateTime(required=True, description='teacher registered_on')
-    })   
-
-class StudentDto:
-    api = Namespace('student', description='student related operations')
-    student = api.model('student', {        
-        'id_account': fields.Integer(required=True, description='student id_account'),        
-        'student_code': fields.String(required=True, description='student student_code'),                
-		'registered_on': fields.DateTime(required=True, description='student registered_on')
-    })   
-
 class InstituteDto:
     api = Namespace('institute', description='institute related operations')
-    institute = api.model('institute', {        
+    institute = api.model('institute', {
         'name': fields.String(required=True, description='institute name'),        
         'email': fields.String(required=True, description='institute email'),
+        'phone': fields.String(required=True, description='institute phone'),
         'id_country': fields.Integer(required=True, description='institute id_country'),
-		'id_state': fields.Integer(required=True, description='institute id_state'),
         'id_city': fields.Integer(required=True, description='institute id_city'),
-		'registered_on': fields.DateTime(required=True, description='institute registered_on')                		
+		'id_state': fields.Integer(required=True, description='institute id_state'),        
+		'registered_on': fields.DateTime(required=True, description='institute registered_on')            
+    })   
+class Type_docDto:
+    api = Namespace('type_doc', description='type_doc related operations')
+    type_doc = api.model('type_doc', {
+        'short_name': fields.String(required=True, description='type_doc short_name'),        
+        'name': fields.String(required=True, description='type_doc name'),
+        'description': fields.String(required=True, description='type_doc description')
+    })   
+class Type_accDto:
+    api = Namespace('type_acc', description='type_acc related operations')
+    type_acc = api.model('type_acc', {        
+        'name': fields.String(required=True, description='type_acc name'),
+        'description': fields.String(required=True, description='type_acc description')
+    })       
+class Level_Dto:
+    api = Namespace('level', description='level related operations')
+    level = api.model('level', {        
+        'name': fields.String(required=True, description='level name'),
+        'description': fields.String(required=True, description='level description')
+    })   
+class Achievement_Dto:
+    api = Namespace('achievement', description='achievement related operations')
+    achievement = api.model('achievement', {
+        'short_name': fields.String(required=True, description='achievement short_name'),        
+        'name': fields.String(required=True, description='achievement name'),
+        'description': fields.String(required=True, description='achievement description')
     })   
 
+class Area_Dto:
+    api = Namespace('area', description='area related operations')
+    area = api.model('area', {
+        'short_name': fields.String(required=True, description='area short_name'),        
+        'name': fields.String(required=True, description='area name'),
+        'description': fields.String(required=True, description='area description')
+    })       
+
+class Subject_Dto:
+    api = Namespace('subject', description='subject related operations')
+    subject = api.model('subject', {
+        'id_area': fields.Integer(required=True, description='subject id_area'),
+        'short_name': fields.String(required=True, description='subject short_name'),        
+        'name': fields.String(required=True, description='subject name')        
+    })       
+
+class Achievement_trans_Dto:
+    api = Namespace('achievement_trans', description='achievement_trans related operations')
+    achievement_trans = api.model('achievement_trans', {
+        'id_achievement': fields.Integer(required=True, description='achievement_trans id_achievement'),
+        'id_account': fields.Integer(required=True, description='achievement_trans id_account'),
+        'registered_on': fields.DateTime(required=True, description='achievement_trans registered_on')
+    })       

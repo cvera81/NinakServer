@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/Users/cristian/Desktop/GitKraken/Ninak/venv"
+$VIRTUAL_ENV = r"/Users/cristian/Desktop/GitKraken/Ninak_Server/NinakServer/venv"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

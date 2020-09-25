@@ -1,4 +1,4 @@
-#!/Users/cristian/Desktop/GitKraken/Ninak/venv/bin/python
+#!/Users/cristian/Desktop/GitKraken/Ninak_Server/NinakServer/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

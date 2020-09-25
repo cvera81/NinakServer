@@ -26,6 +26,12 @@ class UserList(Resource):
         data = request.json
         return save_new_user(data=data)
 
+    @api.expect(_user, validate=True)
+    @api.response(201, 'User successfully updated.')
+    @api.doc('Update an user')
+    def put(self):
+        data = request.json
+        return update_an_user(data)
 
 @api.route('/<num_doc>')
 @api.param('num_doc', 'The User identifier')
@@ -47,15 +53,6 @@ class User(Resource):
         """delete a user given its identifier"""
         delete_an_user(num_doc)
         
-    @api.doc('update a user')
-    @api.marshal_with(_user)        
-    def put(self,num_doc):
-        """update a user given its identifier"""
-        user = update_an_user(num_doc)
-        if not user:
-            api.abort(404)
-        else:
-            return user                
 
 
 

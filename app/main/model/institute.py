@@ -6,16 +6,17 @@ from ..config import key
 import jwt
 
 class Institute(db.Model):
-	""" Institute Model for storing teacher related details """
-	__tablename__ = "Institute"
-	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	name = db.Column(db.String(100), nullable=False)	
-	email = db.Column(db.String(30), nullable=False)	
-	id_country = db.Column(db.Integer,  nullable=False)
-	id_state = db.Column(db.Integer,  nullable=False)
-	id_city = db.Column(db.Integer,  nullable=False)
+	""" Institute Model for storing user related details """
+	__tablename__ = "institute"
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)	
+	name = db.Column(db.String(30), default='', nullable=False)
+	email = db.Column(db.String(30), unique=True, nullable=False)
+	phone = db.Column(db.String(30), default='', nullable=False)
+	id_country = db.Column(db.Integer, nullable=False)
+	id_city = db.Column(db.Integer, nullable=False)
+	id_state = db.Column(db.Integer, nullable=False)	
 	registered_on = db.Column(db.DateTime, nullable=False)
-
+	
 
 	@staticmethod
 	def encode_auth_token(id):
@@ -54,7 +55,6 @@ class Institute(db.Model):
 		except jwt.ExpiredSignatureError:
 			return 'Signature expired. Please log in again.'
 		except jwt.InvalidTokenError:
-			return 'Invalid token. Please log in again.'
-	
+			return 'Invalid token. Please log in again.'	
 	def __repr__(self):
-		return "<Institute '{}'>".format(self.id)
+		return "<Institute '{}'>".format(self.name)
